@@ -1,0 +1,42 @@
+# By default docker-compose will merge this file with our docker-compose.yml
+# We use both to keep the measuring tools completely separeted from the measured contaienrs
+
+version: "3.7"
+
+networks:
+    perfromance_test:
+        driver: bridge
+
+services:
+    native:
+        # This is a simple rest microservice that sends a hello response including the current time.
+        # It has been built from a quarkus project using native image
+        image: rpardom/simple_rest:native
+        container_name: native
+        ports:
+            # To receive the rest requests to respond
+            - 8090:8080
+        networks:
+            - perfromance_test
+
+    jvm:
+        # This is a simple rest microservice that sends a hello response including the current time.
+        # It has been built from a quarkus project using a normal image.
+        image: rpardom/simple_rest:jvm
+        container_name: jvm
+        ports:
+            # To receive the rest requests to respond
+            - 8091:8080
+        networks:
+            - perfromance_test
+
+    wildfly:
+        # This is a simple rest microservice that sends a hello response including the current time.
+        # It has been built from a normal java project using a war that is deployed in a wildfly application container.
+        image: rpardom/simple_rest:wildfly
+        container_name: wildfly
+        ports:
+            # To receive the rest requests to respond
+            - 8092:8080
+        networks:
+            - perfromance_test
