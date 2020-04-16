@@ -20,9 +20,9 @@ To compare the resource consumption we will use the following **tools**:
    * For scenario 1, the [code](https://github.com/RamonPradoMoreno/hello-rest) and the [docker image](https://hub.docker.com/r/rpardom/simple_rest/tags). 
    * For scenarios 2 and 3, the [code](https://github.com/RamonPradoMoreno/hello-rest-quarkus) and the [docker image](https://hub.docker.com/r/rpardom/simple_rest/tags).
 
-## Metricbeat setup
+## Setup
 
-### Install
+### Install Metricbeat
 
 Metricbeat needs to be installed and configured in the machine running docker.
 
@@ -34,7 +34,7 @@ Metricbeat needs to be installed and configured in the machine running docker.
 
    [More Info](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-installation.html)
 
-### Configuration
+### Configure Metricbeat
 
 1. Go to `/usr/share/metricbeat/bin` (if you don't have that directory check [here](https://www.elastic.co/guide/en/beats/metricbeat/current/directory-layout.html))
 
@@ -58,7 +58,7 @@ Metricbeat needs to be installed and configured in the machine running docker.
    # The elasticsearch address is already configured.
    ```
 
-### Start
+### Start the system
 
 1. Start you elk playground:
 
@@ -81,3 +81,7 @@ Metricbeat needs to be installed and configured in the machine running docker.
    5. It will ask you to create an index pattern, insert: `metricbeat*` 
    6. Choose `@timestamp` as Time Filter field name.
    7. Enjoy the monitorization :stuck_out_tongue_winking_eye:
+
+## Load Test the containers
+
+If you want to send multiple requests to the service check `/testbech`. There is another readme inside explaining the process and some results obtained for this test.
